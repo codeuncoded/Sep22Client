@@ -9,13 +9,15 @@ var publisher = OT.initPublisher('publisher', {
     width: '100%',
     height: '100%',
   });
-
+//connect to a meeting
 session.connect(token, function (err) {
     if (err) {
         
     } else {
         alert("connected!!!")
+        //publish my stream
         session.publish(publisher);
+        //subcribe to other's streams
         session.on("streamCreated", function (event) {
             var subscriber = session.subscribe(event.stream, 'subscriber', {
                 insertMode: 'append',
@@ -25,11 +27,5 @@ session.connect(token, function (err) {
     }
 }
 );
-
-//publish my stream
-
-
-//subcribe to other's streams
-
 
 
